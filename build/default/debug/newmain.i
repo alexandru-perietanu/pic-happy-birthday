@@ -5311,14 +5311,57 @@ extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
 # 35 "newmain.c" 2
-
-
-
-
-
-
+# 47 "newmain.c"
 volatile int half_period;
 volatile int current_period_count = 0;
+
+void play_note(int note) {
+    switch (note) {
+        case 262:
+            RB5 = 1;
+            _delay((unsigned long)((1908)*(16000000/4000000.0)));
+            RB5 = 0;
+            _delay((unsigned long)((1908)*(16000000/4000000.0)));
+            break;
+        case 294:
+            RB5 = 1;
+            _delay((unsigned long)((1700)*(16000000/4000000.0)));
+            RB5 = 0;
+            _delay((unsigned long)((1700)*(16000000/4000000.0)));
+            break;
+
+        case 330:
+            RB5 = 1;
+            _delay((unsigned long)((1515)*(16000000/4000000.0)));
+            RB5 = 0;
+            _delay((unsigned long)((1515)*(16000000/4000000.0)));
+            break;
+        case 349:
+            RB5 = 1;
+            _delay((unsigned long)((1432)*(16000000/4000000.0)));
+            RB5 = 0;
+            _delay((unsigned long)((1432)*(16000000/4000000.0)));
+            break;
+        case 440:
+            RB5 = 1;
+            _delay((unsigned long)((1136)*(16000000/4000000.0)));
+            RB5 = 0;
+            _delay((unsigned long)((1136)*(16000000/4000000.0)));
+            break;
+        case 466:
+            RB5 = 1;
+            _delay((unsigned long)((1072)*(16000000/4000000.0)));
+            RB5 = 0;
+            _delay((unsigned long)((1072)*(16000000/4000000.0)));
+            break;
+        case 523:
+            RB5 = 1;
+            _delay((unsigned long)((956)*(16000000/4000000.0)));
+            RB5 = 0;
+            _delay((unsigned long)((956)*(16000000/4000000.0)));
+            break;
+    }
+}
 
 void main(void) {
     SCS1 = 1;
@@ -5326,7 +5369,7 @@ void main(void) {
 
     IRCF3 = 1;
     IRCF2 = 1;
-    IRCF1 = 0;
+    IRCF1 = 1;
     IRCF0 = 1;
 
 
@@ -5335,52 +5378,31 @@ void main(void) {
 
 
 
-                            349, 262, 262, 523, 440, 349, 330, 294, 466, 466, 440,
+        349, 262, 262, 523, 440, 349, 330, 294, 466, 466, 440,
 
 
 
-                            349, 392, 349};
+        349, 392, 349};
 
     unsigned short interval[] = {4, 4, 8, 8, 8, 10, 4, 4, 8, 8, 8, 10, 4, 4, 8, 8, 8,
         8, 8, 4, 4, 8, 8, 8, 12};
 
-    half_period = ((1.0 / 440) * 1000000.0);
-    half_period = half_period / 2 / 21;
 
-    TMR0CS = 0;
-    TMR0SE = 0;
+    TRISB5 = 0;
+    RB5 = 0;
 
-    PSA = 1;
-    PS2 = 1;
-    PS1 = 1;
-    PS0 = 1;
-
-    TMR0IE = 1;
-
-    GIE = 1;
-    TRISB7 = 0;
-    RB7 = 0;
-    TMR0 = 255;
-
+    int j;
+    int k;
     while (1) {
 
-    }
-    return;
-}
+        for (j = 0; j < 25; j++) {
+            for (k = 0; k < interval[j] * 25; k++) {
+                play_note(349);
+            }
 
-void __attribute__((picinterrupt(("")))) Timer0_ISR(void) {
-
-    if (TMR0IE && TMR0IF) {
-        TMR0 = 255;
-        TMR0IF = 0;
-
-        if (current_period_count < half_period) {
-            current_period_count++;
-            RB7 = !RB7;
-        } else {
-            current_period_count = 0;
         }
 
+        _delay((unsigned long)((1000)*(16000000/4000.0)));
 
     }
     return;

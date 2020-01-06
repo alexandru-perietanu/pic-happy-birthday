@@ -18,21 +18,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8544
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1937.h: 8544: extern volatile __bit IRCF0 __attribute__((address(0x4CB)));
 [v _IRCF0 `Vb ~T0 @X0 0 e@1227 ]
-"9693
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1937.h: 9693: extern volatile __bit TMR0CS __attribute__((address(0x4AD)));
-[v _TMR0CS `Vb ~T0 @X0 0 e@1197 ]
-"9702
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1937.h: 9702: extern volatile __bit TMR0SE __attribute__((address(0x4AC)));
-[v _TMR0SE `Vb ~T0 @X0 0 e@1196 ]
-"9696
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1937.h: 9696: extern volatile __bit TMR0IE __attribute__((address(0x5D)));
-[v _TMR0IE `Vb ~T0 @X0 0 e@93 ]
-"9801
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1937.h: 9801: extern volatile __bit TRISB7 __attribute__((address(0x46F)));
-[v _TRISB7 `Vb ~T0 @X0 0 e@1135 ]
-"8958
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1937.h: 8958: extern volatile __bit RB7 __attribute__((address(0x6F)));
-[v _RB7 `Vb ~T0 @X0 0 e@111 ]
+"9795
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1937.h: 9795: extern volatile __bit TRISB5 __attribute__((address(0x46D)));
+[v _TRISB5 `Vb ~T0 @X0 0 e@1133 ]
+"8952
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1937.h: 8952: extern volatile __bit RB5 __attribute__((address(0x6D)));
+[v _RB5 `Vb ~T0 @X0 0 e@109 ]
 [v F2904 `(v ~T0 @X0 1 tf1`ul ]
 "92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
 [v __delay `JF2904 ~T0 @X0 0 e ]
@@ -623,8 +614,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;newmain.c: 49:     IRCF2 = 1;
 [e = _IRCF2 -> -> 1 `i `b ]
 "50
-[; ;newmain.c: 50:     IRCF1 = 0;
-[e = _IRCF1 -> -> 0 `i `b ]
+[; ;newmain.c: 50:     IRCF1 = 1;
+[e = _IRCF1 -> -> 1 `i `b ]
 "51
 [; ;newmain.c: 51:     IRCF0 = 1;
 [e = _IRCF0 -> -> 1 `i `b ]
@@ -696,128 +687,122 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 [v _interval `us ~T0 @X0 -> 25 `i a ]
 [e = _interval F2920 ]
+"69
+[; ;newmain.c: 69:     TRISB5 = 0;
+[e = _TRISB5 -> -> 0 `i `b ]
 "70
-[; ;newmain.c: 70:     TMR0CS = 0;
-[e = _TMR0CS -> -> 0 `i `b ]
-"71
-[; ;newmain.c: 71:     TMR0SE = 0;
-[e = _TMR0SE -> -> 0 `i `b ]
-"78
-[; ;newmain.c: 78:     TMR0IE = 1;
-[e = _TMR0IE -> -> 1 `i `b ]
-"81
-[; ;newmain.c: 81:     TRISB7 = 0;
-[e = _TRISB7 -> -> 0 `i `b ]
-"82
-[; ;newmain.c: 82:     RB7 = 0;
-[e = _RB7 -> -> 0 `i `b ]
-"84
-[; ;newmain.c: 84:     int i;
+[; ;newmain.c: 70:     RB5 = 0;
+[e = _RB5 -> -> 0 `i `b ]
+"72
+[; ;newmain.c: 72:     int i;
 [v _i `i ~T0 @X0 1 a ]
-"85
-[; ;newmain.c: 85:     int j;
+"73
+[; ;newmain.c: 73:     int j;
 [v _j `i ~T0 @X0 1 a ]
-"86
-[; ;newmain.c: 86:     int k;
+"74
+[; ;newmain.c: 74:     int k;
 [v _k `i ~T0 @X0 1 a ]
-"87
-[; ;newmain.c: 87:     while (1) {
+"75
+[; ;newmain.c: 75:     while (1) {
 [e :U 382 ]
 {
-"89
-[; ;newmain.c: 89:         for (j = 0; j < 25; j++) {
+"76
+[; ;newmain.c: 76:         _delay((unsigned long)((262)*(16000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 262 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+"77
+[; ;newmain.c: 77:         for (j = 0; j < 25; j++) {
 {
 [e = _j -> 0 `i ]
 [e $ < _j -> 25 `i 384  ]
 [e $U 385  ]
 [e :U 384 ]
 {
-"90
-[; ;newmain.c: 90:             half_period = ((1.0 / notes[j]) * 1000000.0);
-[e = _half_period -> * / .1.0 -> *U + &U _notes * -> -> _j `ui `ux -> -> # *U &U _notes `ui `ux `d .1000000.0 `i ]
-"91
-[; ;newmain.c: 91:             half_period = half_period / 2 / 21;
+"78
+[; ;newmain.c: 78:             half_period = ((1.0 / 262) * 1000000.0);
+[e = _half_period -> * / .1.0 -> -> 262 `i `d .1000000.0 `i ]
+"79
+[; ;newmain.c: 79:             half_period = half_period / 2 / 21;
 [e = _half_period / / _half_period -> 2 `i -> 21 `i ]
-"93
-[; ;newmain.c: 93:             for (k = 0; k < interval[j] * 30; k++) {
+"81
+[; ;newmain.c: 81:             for (k = 0; k < interval[j] * 30; k++) {
 {
 [e = _k -> 0 `i ]
 [e $U 390  ]
 [e :U 387 ]
 {
-"94
-[; ;newmain.c: 94:                 RB7 = 1;
-[e = _RB7 -> -> 1 `i `b ]
-"95
-[; ;newmain.c: 95:                 for (i = 0; i < half_period; i++) {
+"82
+[; ;newmain.c: 82:                 RB5 = 1;
+[e = _RB5 -> -> 1 `i `b ]
+"83
+[; ;newmain.c: 83:                 for (i = 0; i < half_period; i++) {
 {
 [e = _i -> 0 `i ]
 [e $U 394  ]
 [e :U 391 ]
 {
-"96
-[; ;newmain.c: 96:                     _delay((unsigned long)((1)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
-"97
-[; ;newmain.c: 97:                 }
+"84
+[; ;newmain.c: 84:                     _delay((unsigned long)((1)*(16000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+"85
+[; ;newmain.c: 85:                 }
 }
 [e ++ _i -> 1 `i ]
 [e :U 394 ]
 [e $ < _i _half_period 391  ]
 [e :U 392 ]
 }
-"98
-[; ;newmain.c: 98:                 RB7 = 0;
-[e = _RB7 -> -> 0 `i `b ]
-"99
-[; ;newmain.c: 99:                 for (i = 0; i < half_period; i++) {
+"86
+[; ;newmain.c: 86:                 RB5 = 0;
+[e = _RB5 -> -> 0 `i `b ]
+"87
+[; ;newmain.c: 87:                 for (i = 0; i < half_period; i++) {
 {
 [e = _i -> 0 `i ]
 [e $U 398  ]
 [e :U 395 ]
 {
-"100
-[; ;newmain.c: 100:                     _delay((unsigned long)((1)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
-"101
-[; ;newmain.c: 101:                 }
+"88
+[; ;newmain.c: 88:                     _delay((unsigned long)((1)*(16000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+"89
+[; ;newmain.c: 89:                 }
 }
 [e ++ _i -> 1 `i ]
 [e :U 398 ]
 [e $ < _i _half_period 395  ]
 [e :U 396 ]
 }
-"102
-[; ;newmain.c: 102:             }
+"90
+[; ;newmain.c: 90:             }
 }
 [e ++ _k -> 1 `i ]
 [e :U 390 ]
 [e $ < -> _k `ui * -> *U + &U _interval * -> -> _j `ui `ux -> -> # *U &U _interval `ui `ux `ui -> -> 30 `i `ui 387  ]
 [e :U 388 ]
 }
-"104
-[; ;newmain.c: 104:             _delay((unsigned long)((1000)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
-"105
-[; ;newmain.c: 105:         }
+"92
+[; ;newmain.c: 92:             _delay((unsigned long)((1000)*(16000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+"93
+[; ;newmain.c: 93:         }
 }
 [e ++ _j -> 1 `i ]
 [e $ < _j -> 25 `i 384  ]
 [e :U 385 ]
 }
-"107
-[; ;newmain.c: 107:            _delay((unsigned long)((1000)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"109
-[; ;newmain.c: 109:     }
+"95
+[; ;newmain.c: 95:            _delay((unsigned long)((1000)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"97
+[; ;newmain.c: 97:     }
 }
 [e :U 381 ]
 [e $U 382  ]
 [e :U 383 ]
-"110
-[; ;newmain.c: 110:     return;
+"98
+[; ;newmain.c: 98:     return;
 [e $UE 380  ]
-"111
-[; ;newmain.c: 111: }
+"99
+[; ;newmain.c: 99: }
 [e :UE 380 ]
 }

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/debug\sound_machine.X.debug.hex">
+  <executable name="dist/default/debug\pic-happy-birthday.debug.hex">
     <memory name="program">
       <units>words</units>
       <length>8192</length>
-      <used>365</used>
-      <free>7827</free>
+      <used>464</used>
+      <free>7728</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>512</length>
-      <used>219</used>
-      <free>293</free>
+      <used>218</used>
+      <free>294</free>
     </memory>
   </executable>
 </project>

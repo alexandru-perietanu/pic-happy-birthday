@@ -5326,7 +5326,7 @@ void main(void) {
 
     IRCF3 = 1;
     IRCF2 = 1;
-    IRCF1 = 0;
+    IRCF1 = 1;
     IRCF0 = 1;
 
 
@@ -5345,45 +5345,33 @@ void main(void) {
         8, 8, 4, 4, 8, 8, 8, 12};
 
 
-
-    TMR0CS = 0;
-    TMR0SE = 0;
-
-
-
-
-
-
-    TMR0IE = 1;
-
-
-    TRISB7 = 0;
-    RB7 = 0;
+    TRISB5 = 0;
+    RB5 = 0;
 
     int i;
     int j;
     int k;
     while (1) {
-
+        _delay((unsigned long)((262)*(16000000/4000000.0)));
         for (j = 0; j < 25; j++) {
-            half_period = ((1.0 / notes[j]) * 1000000.0);
+            half_period = ((1.0 / 262) * 1000000.0);
             half_period = half_period / 2 / 21;
 
             for (k = 0; k < interval[j] * 30; k++) {
-                RB7 = 1;
+                RB5 = 1;
                 for (i = 0; i < half_period; i++) {
-                    _delay((unsigned long)((1)*(4000000/4000000.0)));
+                    _delay((unsigned long)((1)*(16000000/4000000.0)));
                 }
-                RB7 = 0;
+                RB5 = 0;
                 for (i = 0; i < half_period; i++) {
-                    _delay((unsigned long)((1)*(4000000/4000000.0)));
+                    _delay((unsigned long)((1)*(16000000/4000000.0)));
                 }
             }
 
-            _delay((unsigned long)((1000)*(4000000/4000000.0)));
+            _delay((unsigned long)((1000)*(16000000/4000000.0)));
         }
 
-           _delay((unsigned long)((1000)*(4000000/4000.0)));
+           _delay((unsigned long)((1000)*(16000000/4000.0)));
 
     }
     return;

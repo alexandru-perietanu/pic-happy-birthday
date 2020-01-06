@@ -35,11 +35,63 @@
 #include <xc.h>
 //#include <pic16f1937.h>
 
-#define _XTAL_FREQ 4000000
-#define timp_apel_ISR 21
+#define _XTAL_FREQ 16000000
+#define f262 1908
+#define f294 1700
+#define f330 1515
+#define f349 1432
+#define f440 1136
+#define f466 1072
+#define f523 956
 
-volatile int half_period;
-volatile int current_period_count = 0;
+
+void play_note(int note) {
+    switch (note) {
+        case 262:
+            RB5 = 1;
+            __delay_us(f262);
+            RB5 = 0;
+            __delay_us(f262);
+            break;
+        case 294:
+            RB5 = 1;
+            __delay_us(f294);
+            RB5 = 0;
+            __delay_us(f294);
+            break;
+
+        case 330:
+            RB5 = 1;
+            __delay_us(f330);
+            RB5 = 0;
+            __delay_us(f330);
+            break;
+        case 349:
+            RB5 = 1;
+            __delay_us(f349);
+            RB5 = 0;
+            __delay_us(f349);
+            break;
+        case 440:
+            RB5 = 1;
+            __delay_us(f440);
+            RB5 = 0;
+            __delay_us(f440);
+            break;
+        case 466:
+            RB5 = 1;
+            __delay_us(f466);
+            RB5 = 0;
+            __delay_us(f466);
+            break;
+        case 523:
+            RB5 = 1;
+            __delay_us(f523);
+            RB5 = 0;
+            __delay_us(f523);
+            break;
+    }
+}
 
 void main(void) {
     SCS1 = 1;
@@ -47,7 +99,7 @@ void main(void) {
 
     IRCF3 = 1;
     IRCF2 = 1;
-    IRCF1 = 0;
+    IRCF1 = 1;
     IRCF0 = 1;
 
     /*                       Hap  py  Birth Day  to  you,  Hap py   birth day  to
@@ -65,46 +117,21 @@ void main(void) {
     unsigned short interval[] = {4, 4, 8, 8, 8, 10, 4, 4, 8, 8, 8, 10, 4, 4, 8, 8, 8,
         8, 8, 4, 4, 8, 8, 8, 12};
 
+    TRISB5 = 0;
+    RB5 = 0;
 
-
-    TMR0CS = 0; // timer source = fosc / 4
-    TMR0SE = 0;
-    // prescalar 4 asociat
-    //    PSA = 1;
-    //    PS2 = 1;
-    //    PS1 = 1;
-    //    PS0 = 1;
-
-    TMR0IE = 1;
-
-    //GIE = 1;
-    TRISB7 = 0;
-    RB7 = 0;
-
-    int i;
     int j;
     int k;
     while (1) {
 
         for (j = 0; j < 25; j++) {
-            half_period = ((1.0 / notes[j]) * 1000000.0);
-            half_period = half_period / 2 / 21;
-
-            for (k = 0; k < interval[j] * 30; k++) {
-                RB7 = 1;
-                for (i = 0; i < half_period; i++) {
-                    __delay_us(1);
-                }
-                RB7 = 0;
-                for (i = 0; i < half_period; i++) {
-                    __delay_us(1);
-                }
+            for (k = 0; k < interval[j] * 25; k++) {
+                play_note(notes[j]);
             }
-
             __delay_us(1000);
         }
 
-           __delay_ms(1000);
+        __delay_ms(1000);
 
     }
     return;

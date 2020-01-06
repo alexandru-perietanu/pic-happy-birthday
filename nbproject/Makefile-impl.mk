@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=sound_machine.X
+PROJECTNAME=pic-happy-birthday
 
 # Active Configuration
 DEFAULTCONF=default
